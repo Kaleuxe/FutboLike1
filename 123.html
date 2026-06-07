@@ -81,3 +81,96 @@
 </a>
 
 </body>
+
+
+<head>
+<meta charset="UTF-8">
+<title>TV Online</title>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<style>
+body{
+    background:#111;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+}
+
+.player-container{
+    position:relative;
+    width:900px;
+    max-width:100%;
+}
+
+video{
+    width:100%;
+    border-radius:10px;
+}
+
+.logo{
+    position:absolute;
+    top:15px;
+    left:15px;
+    width:100px;
+    z-index:10;
+}
+
+.ticker{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:rgba(0,0,0,.7);
+    color:white;
+    overflow:hidden;
+    padding:8px 0;
+}
+
+.ticker span{
+    display:inline-block;
+    white-space:nowrap;
+    animation:scroll 20s linear infinite;
+}
+
+@keyframes scroll{
+    from {transform:translateX(100%);}
+    to {transform:translateX(-100%);}
+}
+</style>
+</head>
+<body>
+
+<div class="player-container">
+
+    <!-- Logo -->
+    <img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/8110.png" class="logo">
+
+    <!-- Video -->
+    <video id="video" controls autoplay></video>
+
+    <!-- Mensaje inferior -->
+    <div class="ticker">
+        <span>
+            Bienvenido a TV Online • Síguenos en Facebook e Instagram • Disfruta nuestra programación
+        </span>
+    </div>
+
+</div>
+
+<script>
+const video = document.getElementById('video');
+const videoSrc = 'TU_ENLACE_M3U8';
+
+if (Hls.isSupported()) {
+    const hls = new Hls();
+    hls.loadSource(videoSrc);
+    hls.attachMedia(video);
+} else {
+    video.src = videoSrc;
+}
+</script>
+
+</body>
